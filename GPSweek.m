@@ -53,9 +53,11 @@ end;
 % end;
 % 
 % JD = fix(365.25*y) + fix(30.6001*(m+1)) + D + (UT/24) + 1720981.5;
-JD = juliandate([Y,M,D,H,min,sec]);
+% JD = juliandate([Y,M,D,H,min,sec]); % Никитоса комп
+JD = juliandate(datetime(Y,M,D,H,min,sec)); % Сани комп
 GPS_wk = fix((JD-2444244.5)/7);
 % GPS_sec_wk = round( ( ((JD-2444244.5)/7)-GPS_wk)*7*24*3600);
 GPS_sec_wk = round( ( ((JD-2444244.5)/7)-GPS_wk)*7*24*3600,2);
+% GPS_sec_wk = ( ( ((JD-2444244.5)/7)-GPS_wk)*7*24*3600);
 % Ensure that 1 < GPS_wk < 1024
 GPS_wk = mod(fix((JD-2444244.5)/7), 1024);
